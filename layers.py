@@ -138,11 +138,11 @@ def logsoftmax(x):
 def kl_divergence_with_logit(q_logit, p_logit):
     q = tf.nn.softmax(q_logit)
     p = tf.nn.softmax(p_logit)          # Added
-    qlogq = tf.reduce_mean(tf.reduce_sum(q * logsoftmax(2 * q_logit), 1))
-    qlogp = tf.reduce_mean(tf.reduce_sum(q * logsoftmax(p_logit + q_logit), 1))
+    qlogq = tf.reduce_mean(tf.reduce_sum(q * logsoftmax(q_logit), 1))
+    qlogp = tf.reduce_mean(tf.reduce_sum(q * logsoftmax(p_logit), 1))
 
-    plogp = tf.reduce_mean(tf.reduce_sum(p * logsoftmax(2 * p_logit), 1))       #Added
-    plogq = tf.reduce_mean(tf.reduce_sum(p * logsoftmax(p_logit + q_logit), 1))       #Added
+    plogp = tf.reduce_mean(tf.reduce_sum(p * logsoftmax(p_logit), 1))       #Added
+    plogq = tf.reduce_mean(tf.reduce_sum(p * logsoftmax(q_logit), 1))       #Added
 
     return qlogq - qlogp + plogp - plogq                                                    #orig - return qlogq - qlogp
 

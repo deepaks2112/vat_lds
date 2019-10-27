@@ -176,7 +176,7 @@ def main(_):
                 end = time.time()
                 print("Epoch:", ep, "CE_loss_train:", sum_loss / FLAGS.num_iter_per_epoch, "elapsed_time:", end - start)
 
-                if (ep + 1) % FLAGS.eval_freq == 0 or ep + 1 == FLAGS.num_epochs or ep == 0:
+                if (ep + 1) % FLAGS.eval_freq == 0 or ep + 1 == FLAGS.num_epochs:
                     # Eval on training data
                     act_values_dict = {}
                     for key, _ in losses_eval_train.items():
